@@ -7,10 +7,9 @@
 4. exit to quit the REPL
 
 ## My notes
-Everything is functionally complete...but
-- I am logging with async fs writes, not streams (yet)
-- I haven't written unit tests (yet)
-- I'm busy the first half of this week but hopefully will have time to slide these 2 things in later this week.
+Everything is functionally complete but didn't quite have enough time to do a couple things:
+- I am logging with async fs writes, not streams
+- I haven't written unit tests
 
 This at-home coding challenge is an opportunity for you to write some clean code that shows us how you use data structures to solve algorithmic problems.
 
