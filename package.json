@@ -1,19 +1,25 @@
 {
-  "name": "roomstogo-backend-take-home",
+  "name": "rooms_to_go_app",
   "version": "1.0.0",
   "description": "Take home assignment for backend candidates at Rooms To Go.",
   "main": "app.js",
   "scripts": {
     "test": "npx mocha test"
   },
+  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RoomstoGoDigital/backend-take-home.git"
   },
-  "author": "Yudhishthir Singh (ysingh)",
-  "license": "ISC",
+  "author": "Nick Hunt",
   "bugs": {
     "url": "https://github.com/RoomstoGoDigital/backend-take-home/issues"
   },
-  "homepage": "https://github.com/RoomstoGoDigital/backend-take-home#readme"
+  "homepage": "https://github.com/RoomstoGoDigital/backend-take-home#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "mongodb": "^3.2.3",
+    "prettyjson": "^1.2.1",
+    "vorpal": "^1.12.0"
+  }
 }
