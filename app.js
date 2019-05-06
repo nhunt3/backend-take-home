@@ -5,17 +5,32 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://nhunt:RoomsToGo@nick-q9qpg.mongodb.net/test";
 let dbo = null;
 const options = {noColor: true};
-const Log = require('./log');
-const log = new Log();
-// const fs = require('fs');
-// const writeStream = fs.createWriteStream('log.txt');
-// process.stdin.pipe(writeStream);
+const fs = require('fs');
+const writeStream = fs.createWriteStream('log.txt');
+const os = require('os');
+const readline = require('readline');
+let lineOfText = null;
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  crlfDelay: Infinity
+});
+
+rl.on('line', (line) => {
+    if (lineOfText === null) {
+        lineOfText = line;
+    }
+    else {
+        writeStream.write(lineOfText + os.EOL + line + os.EOL);
+        lineOfText = null;
+    }
+});
 
 MongoClient.connect(uri, { useNewUrlParser: true }, function(err, client) {
     if(err) {
          console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
     }
-    // console.log('Connected...');
+
     dbo = client.db("roomsToGo");
     // client.close();
 });
@@ -23,7 +38,6 @@ MongoClient.connect(uri, { useNewUrlParser: true }, function(err, client) {
 vorpal
     .command('ADD PRODUCT <productName> <sku>', 'Creates a product in the product catalog')
     .action(function(args, callback) {
-        log.write(`ADD PRODUCT ${args.productName} ${args.sku}`);
         const newProduct = { productName: args.productName, sku: args.sku };
         dbo.collection("Products").insertOne(newProduct, function(err, res) {
           if (err) {
@@ -55,7 +69,6 @@ vorpal
     .command('STOCK <sku> <warehouseNumber> <qty>', 'Stocks "qty" amount of product with sku in specified warehouse')
     .action(async (args, callback) => {
         try {
-            log.write(`STOCK ${args.sku} ${args.warehouseNumber} ${args.qty}`);
             const productsProjection = {projection:{_id: 0}};
             const productsFilter = {sku: args.sku};
             const products = await dbo.collection("Products").find(productsFilter, productsProjection).toArray();
@@ -113,7 +126,6 @@ vorpal
     .command('UNSTOCK <sku> <warehouseNumber> <qty>', 'Unstocks "qty" amount of product with sku in specified warehouse')
     .action(async (args, callback) => {
         try {
-            log.write(`UNSTOCK ${args.sku} ${args.warehouseNumber} ${args.qty}`);
             const warehousesProjection = {projection:{_id: 0}};
             const warehousesFilter = {warehouseNumber: args.warehouseNumber};
             const warehouses = await dbo.collection("Warehouses").find(warehousesFilter, warehousesProjection).toArray();
@@ -147,7 +159,6 @@ vorpal
 vorpal
     .command('LIST PRODUCTS', 'List all products')
     .action(function(args, callback) {
-        log.write(`LIST PRODUCTS`);
         const projection = {projection:{_id: 0}};
         dbo.collection("Products").find({}, projection).toArray(function(err, result) {
             if (err) {
@@ -163,7 +174,6 @@ vorpal
 vorpal
     .command('LIST WAREHOUSES', 'List all warehouses')
     .action(function(args, callback) {
-        log.write(`LIST WAREHOUSES`);
         const projection = {projection:{_id: 0, warehouseNumber:1}};
         dbo.collection("Warehouses").find({}, projection).toArray(function(err, documents) {
             if (err) {
@@ -180,7 +190,6 @@ vorpal
 vorpal
     .command('LIST WAREHOUSE <warehouseNumber>', 'List all info about the warehouse')
     .action(function(args, callback) {
-        log.write(`LIST WAREHOUSE ${args.warehouseNumber}`);
         const projection = {projection:{_id: 0}};
         const filter = {warehouseNumber: args.warehouseNumber};
         dbo.collection("Warehouses").find(filter, projection).toArray(function(err, documents) {
