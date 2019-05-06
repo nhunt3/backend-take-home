@@ -7,6 +7,8 @@ let dbo = null;
 const options = {noColor: true};
 const Log = require('./log');
 const log = new Log();
+// const fs = require('fs');
+// const writeStream = fs.createWriteStream('log.txt');
 // process.stdin.pipe(writeStream);
 
 MongoClient.connect(uri, { useNewUrlParser: true }, function(err, client) {
@@ -82,7 +84,7 @@ vorpal
                     };
                     const newValues = { $inc: { 'products.$.qty': newQty } };
                     const res = await dbo.collection("Warehouses").updateOne(query, newValues);
-                    console.log("Success! We added your quantity to the existing quantity in the warehouse for thast sku!");
+                    console.log("Success! We added your quantity to the existing quantity in the warehouse for that sku!");
                     callback();
                 }
                 // if sku not in warehouse, then add it to warehouse
