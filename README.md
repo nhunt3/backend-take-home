@@ -10,7 +10,7 @@
 Everything is functionally complete...but
 - I am logging with async fs writes, not streams (yet)
 - I haven't written unit tests (yet)
-I'm busy the first half of this week but hopefully will have time to slide these 2 things in later this week.
+- I'm busy the first half of this week but hopefully will have time to slide these 2 things in later this week.
 
 This at-home coding challenge is an opportunity for you to write some clean code that shows us how you use data structures to solve algorithmic problems.
 
