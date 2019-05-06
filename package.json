@@ -4,6 +4,7 @@
   "description": "Take home assignment for backend candidates at Rooms To Go.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "npx mocha test"
   },
   "preferGlobal": true,

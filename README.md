@@ -1,12 +1,16 @@
 # Rooms To Go Engineering: Take Home Assignment
 
-## How we will run your program
+## How to run the program
 1. Clone this repository
-2. npm install
+2. npm i
 3. npm start
-4. EOF to quit the REPL
+4. exit to quit the REPL
 
-Thank you for your continued interest in Rooms to Go!
+## My notes
+Everything is functionally complete...but
+- I am logging with async fs writes, not streams (yet)
+- I haven't written unit tests (yet)
+I'm busy the first half of this week but hopefully will have time to slide these 2 things in later this week.
 
 This at-home coding challenge is an opportunity for you to write some clean code that shows us how you use data structures to solve algorithmic problems.
 
