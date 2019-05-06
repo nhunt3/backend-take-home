@@ -6,10 +6,8 @@
 3. npm start
 4. exit to quit the REPL
 
-## My notes
-Everything is functionally complete but didn't quite have enough time to do a couple things:
-- I am logging with async fs writes, not streams
-- I haven't written unit tests
+Note:
+Everything is functionally complete but I didn't quite have enough time write unit tests
 
 This at-home coding challenge is an opportunity for you to write some clean code that shows us how you use data structures to solve algorithmic problems.
 
