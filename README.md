@@ -6,9 +6,6 @@
 3. npm start
 4. exit to quit the REPL
 
-Note:
-Everything is functionally complete but I didn't quite have enough time write unit tests
-
 This at-home coding challenge is an opportunity for you to write some clean code that shows us how you use data structures to solve algorithmic problems.
 
   * Write code as if you were shipping it: Assume you are going to be code reviewed, articulate a test plan, etc.
